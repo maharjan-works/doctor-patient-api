@@ -1,5 +1,6 @@
 package com.maharjanworks.doctor_patient_api.controller;
 
+import com.maharjanworks.doctor_patient_api.dto.PatchDTO;
 import com.maharjanworks.doctor_patient_api.dto.PatientDTO;
 import com.maharjanworks.doctor_patient_api.respone.AppResponse;
 import com.maharjanworks.doctor_patient_api.service.PatientService;
@@ -38,6 +39,11 @@ public class PatientController {
     @PutMapping()
     public ResponseEntity<AppResponse> update(@RequestBody PatientDTO dto){
         return ResponseEntity.ok(this.patientService.update(dto));
+    }
+
+    @PatchMapping()
+    public ResponseEntity<AppResponse> patch(@RequestBody PatchDTO request){
+        return ResponseEntity.ok(this.patientService.patch(request));
     }
 
 

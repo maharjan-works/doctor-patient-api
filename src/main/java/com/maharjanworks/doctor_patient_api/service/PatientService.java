@@ -1,5 +1,6 @@
 package com.maharjanworks.doctor_patient_api.service;
 
+import com.maharjanworks.doctor_patient_api.dto.PatchDTO;
 import com.maharjanworks.doctor_patient_api.dto.PatientDTO;
 import com.maharjanworks.doctor_patient_api.respone.AppResponse;
 
@@ -15,4 +16,6 @@ public interface PatientService {
     PatientDTO getById(int id);
 
     AppResponse update(PatientDTO dto);
+
+    AppResponse patch(PatchDTO request);
 }

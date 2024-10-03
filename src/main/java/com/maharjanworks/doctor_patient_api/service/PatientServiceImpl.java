@@ -1,5 +1,6 @@
 package com.maharjanworks.doctor_patient_api.service;
 
+import com.maharjanworks.doctor_patient_api.dto.PatchDTO;
 import com.maharjanworks.doctor_patient_api.dto.PatientDTO;
 import com.maharjanworks.doctor_patient_api.exception.EmailAlreadyExistsException;
 import com.maharjanworks.doctor_patient_api.exception.PatientNotFoundException;
@@ -103,6 +104,35 @@ public class PatientServiceImpl implements PatientService{
             return new AppResponse("patient updated", LocalDateTime.now());
         }
         throw new PatientNotFoundException("patient not found.");
+    }
+
+    @Override
+    public AppResponse patch(PatchDTO request) {
+        Optional<Patient> optional = this.patientRepository.findById(request.getId());
+        if (optional.isPresent()){
+            Patient patient = optional.get();
+            if("firstName".equalsIgnoreCase(request.getAttributeName())){
+                patient.setFirstName(request.getAttributeValue());
+            }
+            if("lastName".equalsIgnoreCase(request.getAttributeName())){
+                patient.setLastName(request.getAttributeValue());
+            }
+            if("dob".equalsIgnoreCase(request.getAttributeName())){
+                patient.setDob(request.getAttributeValue());
+            }
+            if("email".equalsIgnoreCase(request.getAttributeName())){
+                patient.setEmail(request.getAttributeValue());
+            }
+            if("username".equalsIgnoreCase(request.getAttributeName())){
+                patient.setUsername(request.getAttributeValue());
+            }
+            if("password".equalsIgnoreCase(request.getAttributeName())){
+                patient.setPassword(request.getAttributeValue());
+            }
+            this.patientRepository.save(patient);
+            return new AppResponse("patient info patched.", LocalDateTime.now());
+        }
+        throw new PatientNotFoundException("patient not found");
     }
 
 }
