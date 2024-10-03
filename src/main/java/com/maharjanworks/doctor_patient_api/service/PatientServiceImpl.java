@@ -10,6 +10,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
@@ -31,6 +32,7 @@ public class PatientServiceImpl implements PatientService{
         }
         Patient patient = new Patient();
         BeanUtils.copyProperties(dto, patient);
+        patient.setRegisteredDate(LocalDate.now());
         this.patientRepository.save(patient);
         return "patient registered successfully.";
     }

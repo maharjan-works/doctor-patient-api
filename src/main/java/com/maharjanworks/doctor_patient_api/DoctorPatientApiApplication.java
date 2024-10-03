@@ -10,8 +10,6 @@ public class DoctorPatientApiApplication {
 
 	public static void main(String[] args) {
 
-		System.out.println(new Date());
-
 		SpringApplication.run(DoctorPatientApiApplication.class, args);
 	}
 

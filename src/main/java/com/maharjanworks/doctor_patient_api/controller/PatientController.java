@@ -14,15 +14,8 @@ import java.util.Date;
 @RequestMapping("/api/v1/patients")
 public class PatientController {
 
-
     @Autowired
     private PatientService patientService;
-
-    @GetMapping()
-    public ResponseEntity<Object> getTodayDate(){
-       LocalDate date = LocalDate.now();
-        return ResponseEntity.ok(date);
-    }
 
     @PostMapping()
     public ResponseEntity<String> create(@RequestBody PatientDTO dto){

@@ -25,13 +25,4 @@ public class Patient {
     private String password;
     private LocalDate registeredDate;
 
-    public Patient(String firstName, String lastName, String dob, String email, String username, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.dob = dob;
-        this.email = email;
-        this.username = username;
-        this.password = password;
-        this.registeredDate = LocalDate.now();
-    }
 }
