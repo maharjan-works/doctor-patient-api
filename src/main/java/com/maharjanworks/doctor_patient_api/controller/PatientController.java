@@ -1,6 +1,7 @@
 package com.maharjanworks.doctor_patient_api.controller;
 
 import com.maharjanworks.doctor_patient_api.dto.PatientDTO;
+import com.maharjanworks.doctor_patient_api.respone.AppResponse;
 import com.maharjanworks.doctor_patient_api.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,6 +33,11 @@ public class PatientController {
     @GetMapping("/{id}")
     public ResponseEntity<PatientDTO> getById(@PathVariable("id") int id){
         return ResponseEntity.ok(this.patientService.getById(id));
+    }
+
+    @PutMapping()
+    public ResponseEntity<AppResponse> update(@RequestBody PatientDTO dto){
+        return ResponseEntity.ok(this.patientService.update(dto));
     }
 
 

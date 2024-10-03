@@ -6,12 +6,15 @@ import com.maharjanworks.doctor_patient_api.exception.PatientNotFoundException;
 import com.maharjanworks.doctor_patient_api.exception.UsernameAlreadyExistsException;
 import com.maharjanworks.doctor_patient_api.model.Patient;
 import com.maharjanworks.doctor_patient_api.repository.PatientRepository;
+import com.maharjanworks.doctor_patient_api.respone.AppResponse;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PatchMapping;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -65,4 +68,41 @@ public class PatientServiceImpl implements PatientService{
         }
         throw new PatientNotFoundException("patient id: "+ id+ " not found");
     }
+
+    @Override
+    public AppResponse update(PatientDTO dto) {
+        Optional<Patient> optional = this.patientRepository.findById(dto.getId());
+        if (optional.isPresent()){
+            Patient patient = new Patient();
+            if(dto.getId() != 0){
+                patient.setId(dto.getId());
+            }
+            if (dto.getFirstName() != null){
+                patient.setFirstName(dto.getFirstName());
+            }
+            if (dto.getLastName() != null){
+                patient.setLastName(dto.getLastName());
+            }
+            if (dto.getDob() != null){
+                patient.setDob(dto.getDob());
+            }
+            if (dto.getEmail() != null ){
+                patient.setEmail(dto.getEmail());
+            }
+            if (dto.getUsername() != null){
+                patient.setUsername(dto.getUsername());
+            }
+            if(dto.getPassword() != null){
+                patient.setPassword(dto.getPassword());
+            }
+            if(dto.getRegisteredDate() != null){
+                patient.setRegisteredDate(dto.getRegisteredDate());
+            }
+
+            this.patientRepository.save(patient);
+            return new AppResponse("patient updated", LocalDateTime.now());
+        }
+        throw new PatientNotFoundException("patient not found.");
+    }
+
 }
