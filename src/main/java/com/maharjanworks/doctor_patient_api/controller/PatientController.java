@@ -29,6 +29,11 @@ public class PatientController {
         return ResponseEntity.ok(this.patientService.retrieveAll());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<PatientDTO> getById(@PathVariable("id") int id){
+        return ResponseEntity.ok(this.patientService.getById(id));
+    }
+
 
 
 

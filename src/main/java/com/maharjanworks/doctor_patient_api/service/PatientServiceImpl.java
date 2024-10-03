@@ -2,6 +2,7 @@ package com.maharjanworks.doctor_patient_api.service;
 
 import com.maharjanworks.doctor_patient_api.dto.PatientDTO;
 import com.maharjanworks.doctor_patient_api.exception.EmailAlreadyExistsException;
+import com.maharjanworks.doctor_patient_api.exception.PatientNotFoundException;
 import com.maharjanworks.doctor_patient_api.exception.UsernameAlreadyExistsException;
 import com.maharjanworks.doctor_patient_api.model.Patient;
 import com.maharjanworks.doctor_patient_api.repository.PatientRepository;
@@ -50,5 +51,18 @@ public class PatientServiceImpl implements PatientService{
             dtoList.add(dto);
         }
         return dtoList;
+    }
+
+    @Override
+    public PatientDTO getById(int id) {
+        Optional<Patient> optional = this.patientRepository.findById(id);
+
+        if(optional.isPresent()){
+            Patient patient = optional.get();
+            PatientDTO dto = new PatientDTO();
+            BeanUtils.copyProperties(patient,dto);
+            return dto;
+        }
+        throw new PatientNotFoundException("patient id: "+ id+ " not found");
     }
 }

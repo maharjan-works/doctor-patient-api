@@ -17,4 +17,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorMessage> handleEmailAlreadyExistsException(EmailAlreadyExistsException ex){
         return ResponseEntity.ok(new ErrorMessage(ex.getMessage(),"ERR101"));
     }
+
+    @ExceptionHandler(PatientNotFoundException.class)
+    public ResponseEntity<ErrorMessage> handlePatientNotFoundException(PatientNotFoundException ex){
+        return ResponseEntity.ok(new ErrorMessage(ex.getMessage(),"ERR_NOT_FOUND"));
+    }
 }

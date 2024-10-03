@@ -10,4 +10,6 @@ public interface PatientService {
     String create(PatientDTO dto);
 
     List<PatientDTO> retrieveAll();
+
+    PatientDTO getById(int id);
 }
