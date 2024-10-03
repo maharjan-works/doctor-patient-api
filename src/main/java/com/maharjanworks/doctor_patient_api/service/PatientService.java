@@ -18,4 +18,6 @@ public interface PatientService {
     AppResponse update(PatientDTO dto);
 
     AppResponse patch(PatchDTO request);
+
+    boolean deleteById(int id);
 }

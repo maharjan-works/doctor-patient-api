@@ -135,4 +135,18 @@ public class PatientServiceImpl implements PatientService{
         throw new PatientNotFoundException("patient not found");
     }
 
+    @Override
+    public boolean deleteById(int id) {
+
+        boolean status = false;
+//        if(!this.patientRepository.existsById(id)){
+//            throw new PatientNotFoundException("patient id: "+ id + " not found");
+//        }
+        if(this.patientRepository.existsById(id)){
+            this.patientRepository.deleteById(id);
+            status = true;
+        }
+        return status;
+    }
+
 }

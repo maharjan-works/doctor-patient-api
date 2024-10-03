@@ -9,9 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/v1/patients")
@@ -44,6 +44,12 @@ public class PatientController {
     @PatchMapping()
     public ResponseEntity<AppResponse> patch(@RequestBody PatchDTO request){
         return ResponseEntity.ok(this.patientService.patch(request));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable int id){
+        boolean status = this.patientService.deleteById(id);
+        return new ResponseEntity<>(status? HttpStatus.NO_CONTENT:HttpStatus.NOT_FOUND);
     }
 
 
