@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/patients")
@@ -22,6 +23,12 @@ public class PatientController {
         return new ResponseEntity<>(this.patientService.create(dto), HttpStatus.CREATED);
 //       return ResponseEntity.created(this.patientService.create(dto));
     }
+
+    @GetMapping()
+    public ResponseEntity<List<PatientDTO>> retrieveAll(){
+        return ResponseEntity.ok(this.patientService.retrieveAll());
+    }
+
 
 
 

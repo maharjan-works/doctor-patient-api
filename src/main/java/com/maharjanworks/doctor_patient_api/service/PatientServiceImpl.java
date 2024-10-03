@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -35,5 +37,18 @@ public class PatientServiceImpl implements PatientService{
         patient.setRegisteredDate(LocalDate.now());
         this.patientRepository.save(patient);
         return "patient registered successfully.";
+    }
+
+    @Override
+    public List<PatientDTO> retrieveAll() {
+        List<Patient> patients= this.patientRepository.findAll();
+        List<PatientDTO> dtoList = new ArrayList<>();
+
+        for(Patient patient:patients){
+            PatientDTO dto = new PatientDTO();
+            BeanUtils.copyProperties(patient,dto);
+            dtoList.add(dto);
+        }
+        return dtoList;
     }
 }

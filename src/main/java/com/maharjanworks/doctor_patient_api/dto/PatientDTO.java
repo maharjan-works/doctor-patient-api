@@ -19,6 +19,7 @@ public class PatientDTO {
     private String email;
     private String username;
     private String password;
+    private LocalDate registeredDate;
 
 
 }
