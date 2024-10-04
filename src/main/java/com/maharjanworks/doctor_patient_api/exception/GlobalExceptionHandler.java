@@ -22,4 +22,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorMessage> handlePatientNotFoundException(PatientNotFoundException ex){
         return ResponseEntity.ok(new ErrorMessage(ex.getMessage(),"ERR_NOT_FOUND"));
     }
+
+    @ExceptionHandler(NullFieldsException.class)
+    public ResponseEntity<ErrorMessage> handleNullFieldsException(NullFieldsException ex){
+        return ResponseEntity.ok(new ErrorMessage(ex.getMessage(),"ERR_NULL_FIELDS" ));
+    }
 }
