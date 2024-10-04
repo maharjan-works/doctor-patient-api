@@ -7,12 +7,11 @@ import com.maharjanworks.doctor_patient_api.exception.PatientNotFoundException;
 import com.maharjanworks.doctor_patient_api.exception.UsernameAlreadyExistsException;
 import com.maharjanworks.doctor_patient_api.model.Patient;
 import com.maharjanworks.doctor_patient_api.repository.PatientRepository;
-import com.maharjanworks.doctor_patient_api.respone.AppResponse;
+import com.maharjanworks.doctor_patient_api.response.AppResponse;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PatchMapping;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

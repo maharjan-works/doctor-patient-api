@@ -2,7 +2,7 @@ package com.maharjanworks.doctor_patient_api.controller;
 
 import com.maharjanworks.doctor_patient_api.dto.PatchDTO;
 import com.maharjanworks.doctor_patient_api.dto.PatientDTO;
-import com.maharjanworks.doctor_patient_api.respone.AppResponse;
+import com.maharjanworks.doctor_patient_api.response.AppResponse;
 import com.maharjanworks.doctor_patient_api.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,8 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/v1/patients")

@@ -1,9 +1,8 @@
-package com.maharjanworks.doctor_patient_api.respone;
+package com.maharjanworks.doctor_patient_api.response;
 
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 
 import java.time.LocalDateTime;
 

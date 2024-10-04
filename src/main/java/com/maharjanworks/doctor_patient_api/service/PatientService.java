@@ -2,9 +2,8 @@ package com.maharjanworks.doctor_patient_api.service;
 
 import com.maharjanworks.doctor_patient_api.dto.PatchDTO;
 import com.maharjanworks.doctor_patient_api.dto.PatientDTO;
-import com.maharjanworks.doctor_patient_api.respone.AppResponse;
+import com.maharjanworks.doctor_patient_api.response.AppResponse;
 
-import java.net.URI;
 import java.util.List;
 
 public interface PatientService {
