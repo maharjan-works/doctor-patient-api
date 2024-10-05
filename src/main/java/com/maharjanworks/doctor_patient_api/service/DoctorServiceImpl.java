@@ -82,4 +82,47 @@ public class DoctorServiceImpl implements DoctorService{
            throw new DoctorNotFoundException("no doctor found.");
        }
     }
+
+    @Override
+    public AppResponse update(DoctorDTO request) throws NullFieldsException {
+        Optional<Doctor> optional=this.doctorRepository.findById(request.getId());
+        if (optional.isEmpty()){
+            throw new DoctorNotFoundException("doctor id "+request.getId()+ "  not found.");
+        }else{
+            Doctor doctor = optional.get();
+            if(!request.getFirstName().isEmpty()){
+                doctor.setFirstName(request.getFirstName());
+            }else{
+                throw new NullFieldsException("firstname is missing");
+            }
+            if (!request.getLastName().isEmpty()){
+                doctor.setLastName(request.getLastName());
+            }else{
+                throw new NullFieldsException("lastname is missing");
+            }
+            if (!request.getEmail().isEmpty()){
+                doctor.setEmail(request.getEmail());
+            }else{
+                throw new NullFieldsException("email is missing");
+            }
+            if(!request.getUsername().isEmpty()){
+                doctor.setUsername(request.getUsername());
+            }else{
+                throw new NullFieldsException("username is missing");
+            }
+            if(!request.getPassword().isEmpty()){
+                doctor.setPassword(request.getPassword());
+            }else{
+                throw new NullFieldsException("password is missing");
+            }
+            if(!request.getSpecialty().isEmpty()){
+                doctor.setSpecialty(request.getSpecialty());
+            }else{
+                throw new NullFieldsException("specialty is missing");
+            }
+            this.doctorRepository.save(doctor);
+            return new AppResponse("doctor info updated", LocalDateTime.now());
+        }
+
+    }
 }

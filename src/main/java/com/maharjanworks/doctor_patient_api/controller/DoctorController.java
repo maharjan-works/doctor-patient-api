@@ -35,4 +35,9 @@ public class DoctorController {
         return ResponseEntity.ok(this.doctorService.findById(id));
     }
 
+    @PutMapping()
+    public ResponseEntity<AppResponse> update(@RequestBody DoctorDTO request) throws NullFieldsException {
+        return ResponseEntity.ok(this.doctorService.update(request));
+    }
+
 }
