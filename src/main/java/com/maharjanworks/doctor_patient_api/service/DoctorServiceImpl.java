@@ -1,6 +1,7 @@
 package com.maharjanworks.doctor_patient_api.service;
 
 import com.maharjanworks.doctor_patient_api.dto.DoctorDTO;
+import com.maharjanworks.doctor_patient_api.exception.DoctorNotFoundException;
 import com.maharjanworks.doctor_patient_api.exception.EmailAlreadyExistsException;
 import com.maharjanworks.doctor_patient_api.exception.NullFieldsException;
 import com.maharjanworks.doctor_patient_api.exception.UsernameAlreadyExistsException;
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -48,6 +51,22 @@ public class DoctorServiceImpl implements DoctorService{
             return new AppResponse("doctor registered", LocalDateTime.now());
         }else{
             throw new NullFieldsException("some fields are missing");
+        }
+    }
+
+    @Override
+    public List<DoctorDTO> findAll() {
+        List<Doctor> doctors = this.doctorRepository.findAll();
+        if (!doctors.isEmpty()){
+            List<DoctorDTO> dtos = new ArrayList<>();
+            for(Doctor doctor:doctors){
+                DoctorDTO dto = new DoctorDTO();
+                BeanUtils.copyProperties(doctor, dto);
+                dtos.add(dto);
+            }
+            return dtos;
+        }else{
+            throw new DoctorNotFoundException("no doctor found.");
         }
     }
 }
