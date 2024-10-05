@@ -45,4 +45,9 @@ public class DoctorController {
     public ResponseEntity<AppResponse> patch(@RequestBody PatchDTO request){
         return ResponseEntity.ok(this.doctorService.patch(request));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<AppResponse> delete(@PathVariable int id){
+        return ResponseEntity.ok(this.doctorService.delete(id));
+    }
 }

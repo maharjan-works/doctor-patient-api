@@ -19,4 +19,6 @@ public interface DoctorService {
     AppResponse update(DoctorDTO request) throws NullFieldsException;
 
     AppResponse patch(PatchDTO request);
+
+    AppResponse delete(int id);
 }

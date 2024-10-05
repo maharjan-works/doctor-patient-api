@@ -159,4 +159,16 @@ public class DoctorServiceImpl implements DoctorService{
         }
       
     }
+
+    @Override
+    public AppResponse delete(int id) {
+        Optional<Doctor> optional = this.doctorRepository.findById(id);
+        if(optional.isPresent()){
+            this.doctorRepository.deleteById(id);
+            return new AppResponse("doctor id: "+ id + " deleted.", LocalDateTime.now());
+        }else{
+            throw new DoctorNotFoundException("doctor id: "+id+ " not found.");
+        }
+
+    }
 }
