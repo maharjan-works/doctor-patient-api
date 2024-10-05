@@ -1,6 +1,7 @@
 package com.maharjanworks.doctor_patient_api.service;
 
 import com.maharjanworks.doctor_patient_api.dto.DoctorDTO;
+import com.maharjanworks.doctor_patient_api.dto.PatchDTO;
 import com.maharjanworks.doctor_patient_api.exception.DoctorNotFoundException;
 import com.maharjanworks.doctor_patient_api.exception.EmailAlreadyExistsException;
 import com.maharjanworks.doctor_patient_api.exception.NullFieldsException;
@@ -124,5 +125,38 @@ public class DoctorServiceImpl implements DoctorService{
             return new AppResponse("doctor info updated", LocalDateTime.now());
         }
 
+    }
+
+    @Override
+    public AppResponse patch(PatchDTO request) {
+        Optional<Doctor> optional = this.doctorRepository.findById(request.getId());
+
+        if (optional.isPresent()){
+            Doctor doctor = optional.get();
+            if("firstName".equalsIgnoreCase(request.getAttributeName())){
+                doctor.setFirstName(request.getAttributeValue());
+            }
+            if("lastName".equalsIgnoreCase(request.getAttributeName())){
+                doctor.setLastName(request.getAttributeValue());
+            }
+            if("email".equalsIgnoreCase(request.getAttributeName()) ){
+                doctor.setEmail(request.getAttributeValue());
+            }
+            if("username".equalsIgnoreCase(request.getAttributeName())){
+                doctor.setUsername(request.getAttributeValue());
+            }
+            if("password".equalsIgnoreCase(request.getAttributeName())){
+                doctor.setPassword(request.getAttributeValue());
+            }
+            if("specialty".equalsIgnoreCase(request.getAttributeName())){
+                doctor.setSpecialty(request.getAttributeValue());
+            }
+            this.doctorRepository.save(doctor);
+
+            return new AppResponse("doctor - "+ request.getAttributeName() + " updated", LocalDateTime.now());
+        }else{
+            throw new DoctorNotFoundException("doctor id: "+ request.getId()+ " not found.");
+        }
+      
     }
 }

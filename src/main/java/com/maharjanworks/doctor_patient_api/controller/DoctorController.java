@@ -1,6 +1,7 @@
 package com.maharjanworks.doctor_patient_api.controller;
 
 import com.maharjanworks.doctor_patient_api.dto.DoctorDTO;
+import com.maharjanworks.doctor_patient_api.dto.PatchDTO;
 import com.maharjanworks.doctor_patient_api.exception.NullFieldsException;
 import com.maharjanworks.doctor_patient_api.model.Doctor;
 import com.maharjanworks.doctor_patient_api.response.AppResponse;
@@ -40,4 +41,8 @@ public class DoctorController {
         return ResponseEntity.ok(this.doctorService.update(request));
     }
 
+    @PatchMapping()
+    public ResponseEntity<AppResponse> patch(@RequestBody PatchDTO request){
+        return ResponseEntity.ok(this.doctorService.patch(request));
+    }
 }
