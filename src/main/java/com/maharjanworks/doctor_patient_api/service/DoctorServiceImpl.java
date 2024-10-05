@@ -69,4 +69,17 @@ public class DoctorServiceImpl implements DoctorService{
             throw new DoctorNotFoundException("no doctor found.");
         }
     }
+
+    @Override
+    public DoctorDTO findById(int id) {
+       Optional<Doctor>  optional = this.doctorRepository.findById(id);
+
+       if(optional.isPresent()){
+           DoctorDTO dto = new DoctorDTO();
+           BeanUtils.copyProperties(optional.get(), dto);
+           return dto;
+       }else{
+           throw new DoctorNotFoundException("no doctor found.");
+       }
+    }
 }

@@ -12,4 +12,6 @@ public interface DoctorService {
     AppResponse create(DoctorDTO dto) throws NullFieldsException;
 
     List<DoctorDTO> findAll();
+
+    DoctorDTO findById(int id);
 }

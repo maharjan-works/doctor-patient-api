@@ -30,4 +30,9 @@ public class DoctorController {
         return ResponseEntity.ok(this.doctorService.findAll());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<DoctorDTO> findById(@PathVariable int id){
+        return ResponseEntity.ok(this.doctorService.findById(id));
+    }
+
 }
